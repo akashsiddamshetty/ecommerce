@@ -36,5 +36,3 @@ coverage/
 bower_components/
 
 # node-waf config
-
-/dist
