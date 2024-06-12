@@ -1,7 +1,15 @@
+import dotenv from 'dotenv';
 import express, { Request, Response } from 'express'
+import connectDB from './db';
+
+
+dotenv.config();
 
 const app = express()
 const port = process.env.PORT || 8080
+
+connectDB();
+
 
 app.get('/', (_req: Request, res: Response) => {
   return res.send('Express Typescript on Vercel')
