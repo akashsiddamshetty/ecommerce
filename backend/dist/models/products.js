@@ -2,6 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
 const productsSchema = new mongoose_1.Schema({
+    productPosition: {
+        type: Number,
+        required: true,
+    },
     id: { type: Number, required: true },
     title: { type: String, required: true },
     description: { type: String, required: true },
@@ -17,7 +21,7 @@ const productsSchema = new mongoose_1.Schema({
     dimensions: {
         width: { type: Number, required: true },
         height: { type: Number, required: true },
-        depth: { type: Number, required: true }
+        depth: { type: Number, required: true },
     },
     warrantyInformation: { type: String, required: true },
     shippingInformation: { type: String, required: true },
@@ -28,8 +32,8 @@ const productsSchema = new mongoose_1.Schema({
             comment: { type: String, required: true },
             date: { type: Date, required: true },
             reviewerName: { type: String, required: true },
-            reviewerEmail: { type: String, required: true }
-        }
+            reviewerEmail: { type: String, required: true },
+        },
     ],
     returnPolicy: { type: String, required: true },
     minimumOrderQuantity: { type: Number, required: true },
@@ -37,11 +41,11 @@ const productsSchema = new mongoose_1.Schema({
         createdAt: { type: Date, required: true },
         updatedAt: { type: Date, required: true },
         barcode: { type: String, required: true },
-        qrCode: { type: String, required: true }
+        qrCode: { type: String, required: true },
     },
     images: { type: [String], required: true },
-    thumbnail: { type: String, required: true }
+    thumbnail: { type: String, required: true },
 });
-const Products = (0, mongoose_1.model)('Products', productsSchema);
+const Products = (0, mongoose_1.model)("Products", productsSchema);
 exports.default = Products;
 //# sourceMappingURL=products.js.map

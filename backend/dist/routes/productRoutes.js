@@ -16,13 +16,25 @@ const express_1 = require("express");
 const products_1 = __importDefault(require("../models/products"));
 const router = (0, express_1.Router)();
 // GET /api/products
-router.get('/products', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.get("/products", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const products = yield products_1.default.find();
+        const products = yield products_1.default.find().sort({ productPosition: 1 });
         res.json(products);
     }
     catch (err) {
         res.status(500).json({ message: err.message });
+    }
+}));
+router.post("/reorder", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { products } = req.body;
+    try {
+        for (let i = 0; i < products.length; i++) {
+            yield products_1.default.updateOne({ _id: products[i]._id }, { productPosition: i });
+        }
+        res.status(200).json(products);
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message });
     }
 }));
 exports.default = router;

@@ -1,4 +1,4 @@
-import { Schema, model, Document } from 'mongoose';
+import { Schema, model, Document } from "mongoose";
 
 interface Dimensions {
   width: number;
@@ -22,6 +22,7 @@ interface Meta {
 }
 
 interface ProductsDocument extends Document {
+  productPosition: number;
   id: number;
   title: string;
   description: string;
@@ -47,6 +48,10 @@ interface ProductsDocument extends Document {
 }
 
 const productsSchema = new Schema<ProductsDocument>({
+  productPosition: {
+    type: Number,
+    required: true,
+  },
   id: { type: Number, required: true },
   title: { type: String, required: true },
   description: { type: String, required: true },
@@ -62,7 +67,7 @@ const productsSchema = new Schema<ProductsDocument>({
   dimensions: {
     width: { type: Number, required: true },
     height: { type: Number, required: true },
-    depth: { type: Number, required: true }
+    depth: { type: Number, required: true },
   },
   warrantyInformation: { type: String, required: true },
   shippingInformation: { type: String, required: true },
@@ -73,8 +78,8 @@ const productsSchema = new Schema<ProductsDocument>({
       comment: { type: String, required: true },
       date: { type: Date, required: true },
       reviewerName: { type: String, required: true },
-      reviewerEmail: { type: String, required: true }
-    }
+      reviewerEmail: { type: String, required: true },
+    },
   ],
   returnPolicy: { type: String, required: true },
   minimumOrderQuantity: { type: Number, required: true },
@@ -82,12 +87,12 @@ const productsSchema = new Schema<ProductsDocument>({
     createdAt: { type: Date, required: true },
     updatedAt: { type: Date, required: true },
     barcode: { type: String, required: true },
-    qrCode: { type: String, required: true }
+    qrCode: { type: String, required: true },
   },
   images: { type: [String], required: true },
-  thumbnail: { type: String, required: true }
+  thumbnail: { type: String, required: true },
 });
 
-const Products = model<ProductsDocument>('Products', productsSchema);
+const Products = model<ProductsDocument>("Products", productsSchema);
 
 export default Products;

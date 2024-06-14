@@ -23,7 +23,7 @@ const useProducts = () => {
     fetchProducts();
   }, []);
 
-  return { loading, products, error };
+  return { loading, products, error,setProducts };
 };
 
 export default useProducts;
